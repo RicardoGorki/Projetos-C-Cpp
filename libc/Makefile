@@ -26,29 +26,32 @@ OBJS = $(SRCS:.c=.o)
 
 CC =	cc
 
-LIBC =	libc/libc
+LIBC =	/libc.h
 
-CFLAGS =	-g -Wall -Werror -Wextra $(LIBC)
+CFLAGS =	-g -Wall -Werror -Wextra -I $(LIBC)
 
 AR = ar rc
 
 RM = rm -f
 
-NAME = libc
+NAME = libc.a
 
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME): $(OBJS)
-		 $(AR) $(NAME) $(OBJS)
+		 @$(AR) $(NAME) $(OBJS)
+		 @echo "Linked"
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
+	@echo "Objects Deleted"
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
+	@echo "Lib deleted"
 
 re: fclean all
 
