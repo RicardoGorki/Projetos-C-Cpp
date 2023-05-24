@@ -10,19 +10,27 @@ RM =		rm -f
 
 NAME =		megaphone
 
-.c.o:
-			@$(CPP) $(CFLAGS) -c $< -o $(<:.cpp=.o)
+RED			=		\033[0;31m
+GREEN		=		\033[0;32m
+RESET		=		\033[0m
+
+.cpp.o:
+			@$(CPP) $(CFLAGS) -c $< -o $@
+			@echo "$(GREEN)objects created$(RESET)"
 
 all:		$(NAME)
 
-$(NAME):	$(SRCS)
-			$(CPP) $(CFLAGS) $(SRCS) -o $(NAME)
+$(NAME):	$(OBJS)
+			@$(CPP) $(CFLAGS) $(OBJS) -o $(NAME)
+			@echo "$(GREEN)$(NAME) created$(RESET)"
 
 clean:
 			@$(RM) $(OBJS)
-			@echo "Objects Deleted"
+			@echo "$(RED)objects deleted$(RESET)"
 
 fclean:		clean
+			@$(RM) $(NAME)
+			@echo "$(RED)$(NAME) deleted$(RESET)"
 
 re:			fclean all
 
