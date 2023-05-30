@@ -2,8 +2,7 @@
 # define PHONEBOOK_HPP
 
 #include "Contact.hpp"
-#include <iostream>
-#include <string>
+
 class PhoneBook {
 
 private:
@@ -12,8 +11,6 @@ private:
 public:
 	PhoneBook(void);
 	~PhoneBook(void);
-
-
 
 };
 
