@@ -4,9 +4,10 @@
 #include <iostream>
 
 class Contact {
+
+public:
 	Contact(void);
 	~Contact(void);
-public:
 
 private:
 
