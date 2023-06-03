@@ -2,26 +2,31 @@
 
 int main()
 {
-	int			control;
-	std::string	temp;
+	int			flag;
+	int			index;
+	std::string	str;
 	PhoneBook	phone;
 
-	control = 1;
-	std::cout << "Enter with options: ADD | SEARCH | EXIT" << std::endl;
-	while(control)
+	flag = 1;
+	index = 0;
+	std::cout << "Enter with commands: ADD | SEARCH | EXIT" << std::endl;
+	while(flag)
 	{
-		std::getline(std::cin, temp);
+		std::cout << "Enter with a command: " << std::endl;
+		std::getline(std::cin, str);
 		if (std::cin.eof())
-			control = 0;
-		if (temp == "ADD")
-			std::cout << "ENTREI ADD" << std::endl;
-		else if (temp == "SEARCH")
-			std::cout << "ENTREI SEARCH" << std::endl;
-		else if (temp == "EXIT")
+			flag = 0;
+		if (str == "ADD")
 		{
-			//destroy tudao
-			control = 0;
+			phone.add_contact(index);
+			index++;
+			if (index == 8)
+				index = 0;
 		}
+		else if (str == "SEARCH")
+			phone.search_contact();
+		else if (str == "EXIT")
+			flag = 0;
 		else
 			std::cout << "try only the options: "
 					<< "ADD | SEARCH | EXIT" << std::endl;
