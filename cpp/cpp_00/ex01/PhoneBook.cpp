@@ -114,18 +114,7 @@ void PhoneBook::add_contact(int index)
 	}
 }
 
-void header_view()
-{
-	std::cout << "---------------------------------------------------------------------" << std::endl;
-	std::cout << "|                          \033[0;36mPhoneBook\033[0m                                |" << std::endl;
-	std::cout << "|                                                                   |" << std::endl;
-	std::cout << "| Enter with any comands below:                                     |" << std::endl;
-	std::cout << "| \033[0;31mADD\033[0m    add new contact                                            |" << std::endl;
-	std::cout << "| \033[0;31mSEARCH\033[0m search for a contact                                       |" << std::endl;
-	std::cout << "| \033[0;31mEXIT\033[0m   exit the program                                           |" << std::endl;
-	std::cout << "|                                                                   |" << std::endl;
-	std::cout << "---------------------------------------------------------------------" << std::endl;
-}
+
 
 void search_view()
 {
@@ -134,6 +123,17 @@ void search_view()
 	std::cout << "---------------------------------------------------------------------" << std::endl;
 	std::cout << "|      \033[1mINDEX\033[0m     |   \033[1mFIRST NAME\033[0m   |   \033[1mLAST NAME\033[0m    |   \033[1mNICK NAME\033[0m    |" << std::endl;
 	std::cout << "---------------------------------------------------------------------" << std::endl;
+}
+
+void index_view()
+{
+	std::cout << "-------------------------------------------------------------------------------------" << std::endl;
+	std::cout << "|                                       \033[0;36mCONTACT\033[0m                                     |" << std::endl;
+	std::cout << "-------------------------------------------------------------------------------------" << std::endl;
+	std::cout << "|   \033[1mINDEX\033[0m    | \033[1mFIRST NAME\033[0m "
+				 "| \033[1mLAST NAME\033[0m  | \033[1mNICK NAME\033[0m  "
+				 "| \033[1mPHONE NUMBER\033[0m | \033[1mDARKEST SECRET\033[0m |" << std::endl;
+	std::cout << "-------------------------------------------------------------------------------------" << std::endl;
 }
 
 std::string PhoneBook::format_contact(std::string get_name)
@@ -150,24 +150,52 @@ void PhoneBook::body_contact(int i)
 {
 
 	std::cout << "|   "
+	<<  std::setw(10) << i << "   "
+	<< "|   "
 	<<  std::setw(10) << format_contact(_contact[i].getFirstName()) << "   "
 	<< "|   "
 	<<  std::setw(10) << format_contact(_contact[i].getLastName()) <<  "   "
 	<< "|   "
 	<<  std::setw(10) << format_contact(_contact[i].getNickName()) <<  "   "
 	<< "|   "
-	<<  std::setw(10) << format_contact(_contact[i].getPhoneNumber()) << "   "
-	<< "|   "
 	<< std::endl;
 	std::cout << "---------------------------------------------------------------------" << std::endl;
 }
 
+void PhoneBook::index_contact(int i)
+{
+	if (!_contact[i].getFirstName().empty())
+	{
+		std::cout << "| "
+		<<  std::setw(10) << i << " "
+		<< "| "
+		<<  std::setw(10) << format_contact(_contact[i].getFirstName()) << " "
+		<< "| "
+		<<  std::setw(10) << format_contact(_contact[i].getLastName()) <<  " "
+		<< "| "
+		<<  std::setw(10) << format_contact(_contact[i].getNickName()) <<  " "
+		<< "|  "
+		<<  std::setw(10) << format_contact(_contact[i].getPhoneNumber()) <<  "  "
+		<< "|   "
+		<<  std::setw(10) << format_contact(_contact[i].getDarkestSecret()) <<  "   "
+		<< "| "
+		<< std::endl;
+		std::cout << "-------------------------------------------------------------------------------------" << std::endl;
+	}
+	else
+	{
+		std::cout << "|                                 \033[0;31mcontact not found\033[0m                                 |" << std::endl;
+		std::cout << "-------------------------------------------------------------------------------------" << std::endl;
+	}
+}
+
 void PhoneBook::search_contact()
 {
-	int i;
+	std::string	str;
+	int 		i;
+	int			index;
 
 	i = 0;
-	header_view();
 	search_view();
 	if (_count_contact == 0)
 	{
@@ -178,5 +206,23 @@ void PhoneBook::search_contact()
 	{
 		body_contact(i);
 		i++;
+	}
+	if (_count_contact != 0)
+	{
+		std::cout << "Insert INDEX contact to see more detail" << std::endl;
+		std::getline(std::cin, str);
+		if (check_onlyspace(str) || !my_isdigit(str))
+		{
+			index = atoi(str.c_str());
+			if (index >= 0 && index <= 7)
+			{
+				index_view();
+				index_contact(index);
+			}
+			else
+			std::cout << "Insert index range [0-7]" << std::endl;
+		}
+		else
+			std::cout << "Only numbers range [0-7]" << std::endl;
 	}
 }

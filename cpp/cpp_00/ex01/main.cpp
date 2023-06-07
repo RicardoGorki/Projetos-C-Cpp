@@ -1,5 +1,18 @@
 #include "PhoneBook.hpp"
 
+void header_view()
+{
+	std::cout << "---------------------------------------------------------------------" << std::endl;
+	std::cout << "|                          \033[0;36mPhoneBook\033[0m                                |" << std::endl;
+	std::cout << "|                                                                   |" << std::endl;
+	std::cout << "| Enter with any comands below:                                     |" << std::endl;
+	std::cout << "| \033[0;31mADD\033[0m    add new contact                                            |" << std::endl;
+	std::cout << "| \033[0;31mSEARCH\033[0m search for a contact                                       |" << std::endl;
+	std::cout << "| \033[0;31mEXIT\033[0m   exit the program                                           |" << std::endl;
+	std::cout << "|                                                                   |" << std::endl;
+	std::cout << "---------------------------------------------------------------------" << std::endl;
+}
+
 int main()
 {
 	int			flag;
@@ -9,6 +22,7 @@ int main()
 
 	flag = 1;
 	index = 0;
+	header_view();
 	std::cout << "Enter with commands: ADD | SEARCH | EXIT" << std::endl;
 	while(flag)
 	{
