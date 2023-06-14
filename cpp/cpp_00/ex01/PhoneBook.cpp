@@ -114,8 +114,6 @@ void PhoneBook::add_contact(int index)
 	}
 }
 
-
-
 void search_view()
 {
 	std::cout << "---------------------------------------------------------------------" << std::endl;
