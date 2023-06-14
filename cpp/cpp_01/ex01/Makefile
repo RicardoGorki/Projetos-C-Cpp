@@ -1,6 +1,6 @@
-SRCS =		PhoneBook.cpp	\
-			Contact.cpp		\
-			main.cpp		\
+SRCS =		main.cpp		\
+			Zombie.cpp		\
+			zombieHorde.cpp	\
 
 OBJS =		$(SRCS:.cpp=.o)
 
@@ -10,7 +10,7 @@ CFLAGS =	-Wall -Werror -Wextra -std=c++98
 
 RM =		rm -f
 
-NAME =		phonebook
+NAME =		zombie
 
 RED			=		\033[0;31m
 GREEN		=		\033[0;32m
