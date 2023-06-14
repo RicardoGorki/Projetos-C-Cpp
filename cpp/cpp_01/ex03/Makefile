@@ -11,7 +11,7 @@ CFLAGS =	-Wall -Werror -Wextra -std=c++98
 
 RM =		rm -f
 
-NAME =		zombie
+NAME =		weapons
 
 RED			=		\033[0;31m
 GREEN		=		\033[0;32m
