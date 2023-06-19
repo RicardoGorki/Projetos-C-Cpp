@@ -14,6 +14,8 @@ int main()
 		std::getline(std::cin, level);
 		if (std::cin.eof())
 			flag = 0;
+		if (level == "exit" || level == "EXIT")
+			return (0);
 		harls.complain(level);
 	}
 	return (0);
