@@ -1,5 +1,5 @@
 SRCS =		main.cpp	\
-			Harl.cpp	\
+			Fixed.cpp	\
 
 OBJS =		$(SRCS:.cpp=.o)
 
@@ -9,7 +9,7 @@ CFLAGS =	-g -Wall -Werror -Wextra -std=c++98
 
 RM =		rm -f
 
-NAME =		harl
+NAME =		fixed
 
 RED			=		\033[0;31m
 GREEN		=		\033[0;32m
