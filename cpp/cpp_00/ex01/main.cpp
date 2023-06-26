@@ -1,6 +1,6 @@
 #include "PhoneBook.hpp"
 
-void header_view()
+static void header_view()
 {
 	std::cout << "---------------------------------------------------------------------" << std::endl;
 	std::cout << "|                          \033[0;36mPhoneBook\033[0m                                |" << std::endl;
@@ -32,8 +32,8 @@ int main()
 			flag = 0;
 		if (str == "ADD")
 		{
-			phone.add_contact(index);
-			index++;
+			if (phone.add_contact(index))
+				index++;
 			if (index == 8)
 				index = 0;
 		}

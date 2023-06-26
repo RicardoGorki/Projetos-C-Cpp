@@ -11,7 +11,7 @@ PhoneBook::~PhoneBook()
 	std::cout << "Destructor called" << std::endl;
 }
 
-int check_onlyspace(std::string str)
+static int check_onlyspace(std::string str)
 {
 	int i;
 	int flag;
@@ -31,7 +31,7 @@ int check_onlyspace(std::string str)
 	return (1);
 }
 
-int check_has_space(std::string str)
+static int check_has_space(std::string str)
 {
 	int i;
 	int flag;
@@ -51,7 +51,7 @@ int check_has_space(std::string str)
 	return (0);
 }
 
-int my_isdigit(std::string str)
+static int my_isdigit(std::string str)
 {
 	int i;
 
@@ -65,7 +65,7 @@ int my_isdigit(std::string str)
 	return (0);
 }
 
-void PhoneBook::add_contact(int index)
+int PhoneBook::add_contact(int index)
 {
 	int			flag;
 	std::string str[5];
@@ -109,12 +109,14 @@ void PhoneBook::add_contact(int index)
 			std::cout << "\033[0;32mContact registred with Success\033[0m" << std::endl;
 			if (_count_contact < 8)
 				_count_contact++;
+			return (1);
 		}
 		flag = 0;
 	}
+	return (0);
 }
 
-void search_view()
+static void search_view()
 {
 	std::cout << "---------------------------------------------------------------------" << std::endl;
 	std::cout << "|                              \033[0;36mSEARCH\033[0m                               |" << std::endl;
@@ -123,7 +125,7 @@ void search_view()
 	std::cout << "---------------------------------------------------------------------" << std::endl;
 }
 
-void index_view()
+static void index_view()
 {
 	std::cout << "-------------------------------------------------------------------------------------" << std::endl;
 	std::cout << "|                                       \033[0;36mCONTACT\033[0m                                     |" << std::endl;

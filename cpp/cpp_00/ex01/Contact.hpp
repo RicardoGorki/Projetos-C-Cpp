@@ -18,8 +18,8 @@ private:
 
 public:
 
-	Contact(void);
-	~Contact(void);
+	Contact();
+	~Contact();
 
 	std::string getFirstName() const;
 	std::string getLastName() const;
