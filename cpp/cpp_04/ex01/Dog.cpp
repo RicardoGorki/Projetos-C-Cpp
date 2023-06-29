@@ -16,7 +16,7 @@ Dog::~Dog()
 Dog::Dog(const Dog& cpDog)
 {
 	type = cpDog.type;
-	*_newBrain = *cpDog._newBrain;
+	_newBrain = new Brain(*cpDog._newBrain);
 	std::cout << "Dog copy contructor called" << std::endl;
 }
 
@@ -25,7 +25,7 @@ Dog& Dog::operator=(const Dog& other)
 	if (this != &other)
 	{
 		type = other.type;
-		_newBrain = other._newBrain;
+		_newBrain = new Brain (*other._newBrain);
 	}
 	std::cout << "Dog copy operator called" << std::endl;
 	return (*this);
