@@ -13,7 +13,7 @@ Dog::~Dog()
 	std::cout << "Dog destructor called" << std::endl;
 }
 
-Dog::Dog(const Dog& cpDog)
+Dog::Dog(const Dog& cpDog) : Animal(cpDog)
 {
 	type = cpDog.type;
 	*_newBrain = *cpDog._newBrain;
