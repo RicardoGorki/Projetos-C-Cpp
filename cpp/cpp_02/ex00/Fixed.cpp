@@ -6,16 +6,17 @@ Fixed::Fixed(void)
 	_store_fp = 0;
 };
 
-Fixed::Fixed(const Fixed &cpFixed)
+Fixed::Fixed(const Fixed &other)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	_store_fp = cpFixed._store_fp;
+	_store_fp = other._store_fp;
 };
 
-void Fixed::operator=(const Fixed& fp)
+Fixed& Fixed::operator=(const Fixed& other)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	_store_fp = fp._store_fp;
+	_store_fp = other._store_fp;
+	return (*this);
 };
 
 Fixed::~Fixed(void)

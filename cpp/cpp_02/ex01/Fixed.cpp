@@ -6,24 +6,27 @@
 		_store_fp = 0;
 	};
 
-	Fixed::Fixed(const float floatValue) : _store_fp(static_cast<int>(roundf(floatValue * (1 << _store_bit)))) {}
+	Fixed::Fixed(const float floatValue) : _store_fp(static_cast<int>(roundf(floatValue * (1 << _store_bit))))
+	{
+		std::cout << "Float constructor called" << std::endl;
+	}
 
-	Fixed::Fixed(const int intValue) : _store_fp(intValue << _store_bit) {}
+	Fixed::Fixed(const int intValue) : _store_fp(intValue << _store_bit)
+	{
+		std::cout << "Int constructor called" << std::endl;
+	}
 
-	Fixed::Fixed(const Fixed &cpFixed)
+	Fixed::Fixed(const Fixed &other)
 	{
 		std::cout << "Copy constructor called" << std::endl;
-		_store_fp = cpFixed._store_fp;
+		_store_fp = other._store_fp;
 	};
 
-	Fixed& Fixed::operator=(const Fixed& fp)
+	Fixed& Fixed::operator=(const Fixed& other)
 	{
-		if (this != &fp)
-		{
-			_store_fp = fp._store_fp;
-		}
+		if (this != &other)
+			_store_fp = other._store_fp;
 		std::cout << "Copy assignment operator called" << std::endl;
-
 		return (*this);
 	};
 

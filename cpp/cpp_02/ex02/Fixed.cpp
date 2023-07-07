@@ -9,94 +9,89 @@ Fixed::Fixed(const float floatValue) : _store_bit(8)
 
 Fixed::Fixed(const int intValue) : _store_bit(8)
 {
-	_store_fp = (intValue << _store_bit);
+	_store_fp = intValue * (1 << _store_bit);
 };
 
-Fixed::Fixed(const Fixed &cpFixed)
+Fixed::Fixed(const Fixed &other)
 {
-	_store_fp = cpFixed._store_fp;
+	_store_fp = other._store_fp;
+	_store_bit = other._store_bit;
 };
 
-Fixed Fixed::operator=(const Fixed &fp)
+Fixed& Fixed::operator=(const Fixed &other)
 {
-	if (this != &fp)
-	{
-		_store_fp = fp._store_fp;
-	}
+	if (this != &other)
+		_store_fp = other._store_fp;
 	return (*this);
 };
 
-Fixed Fixed::operator+(const Fixed &fp)
-{
-	if (this != &fp)
-	{
-		_store_fp += fp._store_fp;
-	}
-	return (*this);
-};
-
-Fixed Fixed::operator-(const Fixed &fp)
-{
-	if (this != &fp)
-	{
-		_store_fp -= fp._store_fp;
-	}
-	return (*this);
-};
-
-Fixed Fixed::operator*(const Fixed &fp)
+Fixed Fixed::operator+(const Fixed &other)
 {
 	Fixed result;
 
-	result.setRawBits(_store_fp * fp._store_fp);
-	result._store_bit = _store_bit + fp._store_bit;
+	result._store_fp = _store_fp + other._store_fp;
+	return (result);
+};
+
+Fixed Fixed::operator-(const Fixed &other)
+{
+	Fixed result;
+
+	result._store_fp = _store_fp - other._store_fp;
+	return (result);
+};
+
+Fixed Fixed::operator*(const Fixed &other)
+{
+	Fixed result;
+
+	result.setRawBits(_store_fp * other._store_fp);
+	result._store_bit = _store_bit + other._store_bit;
 	return (result);
 }
 
-Fixed Fixed::operator/(const Fixed &fp)
+Fixed Fixed::operator/(const Fixed &other)
 {
-	if (this != &fp)
-	{
-		_store_fp /= fp._store_fp;
-	}
+	if (this != &other)
+		_store_fp /= other._store_fp;
 	return (*this);
 }
 
-bool Fixed::operator<(const Fixed &fp) const
+bool Fixed::operator<(const Fixed &other) const
 {
-	return (_store_fp < fp._store_fp);
+	return (_store_fp < other._store_fp);
 };
 
-bool Fixed::operator>(const Fixed &fp) const
+bool Fixed::operator>(const Fixed &other) const
 {
-	return (_store_fp > fp._store_fp);
+	return (_store_fp > other._store_fp);
 };
 
-bool Fixed::operator>=(const Fixed &fp) const
+bool Fixed::operator>=(const Fixed &other) const
 {
-	return (_store_fp >= fp._store_fp);
+	return (_store_fp >= other._store_fp);
 };
 
-bool Fixed::operator<=(const Fixed &fp) const
+bool Fixed::operator<=(const Fixed &other) const
 {
-	return (_store_fp <= fp._store_fp);
+	return (_store_fp <= other._store_fp);
 };
-bool Fixed::operator==(const Fixed &fp) const
+bool Fixed::operator==(const Fixed &other) const
 {
-	return (_store_fp == fp._store_fp);
+	return (_store_fp == other._store_fp);
 };
-bool Fixed::operator!=(const Fixed &fp) const
+bool Fixed::operator!=(const Fixed &other) const
 {
-	return (_store_fp != fp._store_fp);
+	return (_store_fp != other._store_fp);
 };
 
-std::ostream &operator<<(std::ostream &os, const Fixed &fp)
+std::ostream &operator<<(std::ostream &os, const Fixed &other)
 {
-	os << fp.toFloat();
+	os << other.toFloat();
 	return (os);
 };
 
-Fixed &Fixed::operator++()
+Fixed& Fixed::operator++()
 {
 	++_store_fp;
 	return (*this);
@@ -105,11 +100,11 @@ Fixed &Fixed::operator++()
 Fixed Fixed::operator++(int)
 {
 	Fixed temp(*this);
-	++(*this);
-	return temp;
+	_store_fp++;
+	return (temp);
 }
 
-Fixed &Fixed::operator--()
+Fixed& Fixed::operator--()
 {
 	--_store_fp;
 	return (*this);
@@ -161,5 +156,5 @@ float Fixed::toFloat(void) const
 
 int Fixed::toInt(void) const
 {
-	return (_store_fp >> _store_bit);
+	return (_store_fp / (1 << _store_bit));
 }
