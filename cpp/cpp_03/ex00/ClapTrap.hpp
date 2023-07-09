@@ -1,7 +1,6 @@
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
 
-#include <string>
 #include <iostream>
 
 class ClapTrap
@@ -25,7 +24,6 @@ public:
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 	void operator=(const ClapTrap& cp);
-	std::string getName();
 
 };
 
