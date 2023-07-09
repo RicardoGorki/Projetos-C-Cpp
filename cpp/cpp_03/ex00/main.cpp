@@ -2,17 +2,26 @@
 
 int main()
 {
-	ClapTrap trap("Seismic");
+	ClapTrap trap("C3PO");
 
-	trap.attack("rat");
+	trap.attack("stormtrooper");
 	trap.takeDamage(9);
 	trap.beRepaired(100);
-	trap.attack("urubu");
-	trap.takeDamage(10);
-	trap.attack("urubu");
-	trap.takeDamage(10);
-
-	std::cout << trap.getName();
-
+	trap.beRepaired(100);
+	trap.beRepaired(100);
+	trap.beRepaired(100);
+	trap.beRepaired(100);
+	trap.beRepaired(100);
+	trap.beRepaired(100);
+	trap.beRepaired(100);
+	trap.beRepaired(100);
+	trap.beRepaired(100);
+	trap.attack("stormtrooper");
+	trap.takeDamage(1001);
+	trap.attack("stormtrooper");
+	trap.takeDamage(1);
+	trap.takeDamage(1);
+	trap.beRepaired(100);
+	trap.attack("stormtrooper");
 	return (0);
 }
