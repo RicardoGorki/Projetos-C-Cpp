@@ -5,6 +5,11 @@
 #include "AMateria.hpp"
 class Character
 {
+
+protected:
+	std::string name;
+	int slots[4];
+
 public:
 	Character();
 	~Character();

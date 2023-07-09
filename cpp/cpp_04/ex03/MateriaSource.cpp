@@ -15,3 +15,16 @@ MateriaSource& MateriaSource::operator=(const MateriaSource &other)
 
 	return (*this);
 }
+
+void MateriaSource::learnMateria(AMateria*)
+{
+
+}
+
+AMateria* MateriaSource::createMateria(std::string const &)
+{
+	if (!learnMateria)
+		return (0);
+	learnMateria(type);
+
+}
