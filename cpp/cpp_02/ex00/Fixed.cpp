@@ -1,9 +1,8 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed(void)
+Fixed::Fixed(void) : _store_fp(0)
 {
 	std::cout << "Default constructor called" << std::endl;
-	_store_fp = 0;
 };
 
 Fixed::Fixed(const Fixed &other)

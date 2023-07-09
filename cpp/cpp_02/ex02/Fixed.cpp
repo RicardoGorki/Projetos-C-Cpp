@@ -28,33 +28,29 @@ Fixed& Fixed::operator=(const Fixed &other)
 Fixed Fixed::operator+(const Fixed &other)
 {
 	Fixed result;
-
-	result._store_fp = _store_fp + other._store_fp;
-	return (result);
+    result._store_fp = (_store_fp + other._store_fp);
+    return (result);
 };
 
 Fixed Fixed::operator-(const Fixed &other)
 {
 	Fixed result;
-
-	result._store_fp = _store_fp - other._store_fp;
-	return (result);
+    result._store_fp = (_store_fp - other._store_fp);
+    return (result);
 };
 
 Fixed Fixed::operator*(const Fixed &other)
 {
-	Fixed result;
-
-	result.setRawBits(_store_fp * other._store_fp);
-	result._store_bit = _store_bit + other._store_bit;
-	return (result);
+  	Fixed result;
+    result._store_fp = (_store_fp * other._store_fp) >> _store_bit;
+    return (result);
 }
 
 Fixed Fixed::operator/(const Fixed &other)
 {
-	if (this != &other)
-		_store_fp /= other._store_fp;
-	return (*this);
+	Fixed result;
+    result._store_fp = (_store_fp / other._store_fp) << _store_bit;
+    return (result);
 }
 
 bool Fixed::operator<(const Fixed &other) const
@@ -113,8 +109,8 @@ Fixed& Fixed::operator--()
 Fixed Fixed::operator--(int)
 {
 	Fixed temp(*this);
-	--(*this);
-	return temp;
+	_store_fp--;
+	return (temp);
 }
 
 Fixed &min(Fixed &a, Fixed &b)
