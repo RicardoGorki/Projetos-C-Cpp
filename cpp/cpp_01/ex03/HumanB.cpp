@@ -1,6 +1,6 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string name) : _name(name)
+HumanB::HumanB(std::string name) : _name(name), _weapon(NULL)
 {
 	std::cout << "Contructor called" << std::endl;
 }
@@ -17,10 +17,9 @@ void HumanB::setWeapon(Weapon &weapon)
 
 void HumanB::attack(void) const
 {
-	std::cout << _name << " attacks";
 	if (_weapon)
-		std::cout <<  " with their " << _weapon->getType();
+		std::cout << _name << " attacks" <<  " with their " << _weapon->getType() << std::endl;
 	else
-		std::cout << " without";
-	std::cout << std::endl;
+		std::cout << "I don't have a weapon" << std::endl;
+
 }
