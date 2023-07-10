@@ -18,13 +18,14 @@ ClapTrap::ClapTrap(const ClapTrap &other)
 	_attack_point = other._attack_point;
 };
 
-void ClapTrap::operator=(const ClapTrap &other)
+ClapTrap& ClapTrap::operator=(const ClapTrap &other)
 {
 	std::cout << "ClapTrap copy assignment operator called" << std::endl;
 	_name = other._name;
 	_hit_point = other._hit_point;
 	_energy_point = other._energy_point;
 	_attack_point = other._attack_point;
+	return (*this);
 };
 
 void ClapTrap::attack(const std::string& target)

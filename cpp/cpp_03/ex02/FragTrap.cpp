@@ -1,30 +1,38 @@
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap() { std::cout << "Constructor called" << std::endl; }
-
-FragTrap::~FragTrap() { std::cout << "Destructor called" << std::endl; }
-
-FragTrap::FragTrap(const FragTrap &cpFragTrap)
+FragTrap::FragTrap()
 {
-	std::cout << "Copy constructor called" << std::endl;
-	_name = cpFragTrap._name;
-	_hit_point = cpFragTrap._hit_point;
-	_energy_point = cpFragTrap._energy_point;
-	_attack_point = cpFragTrap._attack_point;
+	std::cout << "FragTrap constructor called" << std::endl;
+	_name = "FragTrap_Anonimous";
+	_hit_point = 100;
+	_energy_point = 100;
+	_attack_point = 30;
+}
+
+FragTrap::~FragTrap() { std::cout << "FragTrap destructor called" << std::endl; }
+
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap()
+{
+	std::cout << "FragTrap copy constructor called" << std::endl;
+	_name = other._name;
+	_hit_point = other._hit_point;
+	_energy_point = other._energy_point;
+	_attack_point = other._attack_point;
 };
 
-void FragTrap::operator=(const FragTrap& cp)
+FragTrap& FragTrap::operator=(const FragTrap& other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
-	_name = cp._name;
-	_hit_point = cp._hit_point;
-	_energy_point = cp._energy_point;
-	_attack_point = cp._attack_point;
+	std::cout << "FragTrap copy assignment operator called" << std::endl;
+	_name = other._name;
+	_hit_point = other._hit_point;
+	_energy_point = other._energy_point;
+	_attack_point = other._attack_point;
+	return (*this);
 };
 
 FragTrap::FragTrap(std::string name)
 {
-	std::cout << "Constructor called" << std::endl;
+	std::cout << "FragTrap constructor called" << std::endl;
 	_name = name;
 	_hit_point = 100;
 	_energy_point = 100;
@@ -33,5 +41,8 @@ FragTrap::FragTrap(std::string name)
 
 void FragTrap::highFivesGuys(void)
 {
- std::cout << "positive high fives request on the standard output." << std::endl;
+	if (_hit_point > 0)
+	{
+ 		std::cout << _name << " positive high fives request!" << std::endl;
+	}
 }

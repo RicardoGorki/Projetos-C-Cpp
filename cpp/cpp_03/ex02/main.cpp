@@ -2,11 +2,12 @@
 
 int main()
 {
-	FragTrap trap("Seismic");
+	FragTrap fTrap("C3PO");
+	FragTrap trap(fTrap);
 
-	trap.attack("dot");
+	trap.attack("Stormtrooper");
 	trap.takeDamage(30);
-
+	trap.highFivesGuys();
 
 
 	return (0);

@@ -13,8 +13,8 @@ public:
 	FragTrap();
 	~FragTrap();
 	FragTrap(std::string name);
-	FragTrap(const FragTrap &cpFragTrap);
-	void operator=(const FragTrap& cp);
+	FragTrap(const FragTrap& other);
+	FragTrap& operator=(const FragTrap& other);
 	void highFivesGuys(void);
 };
 

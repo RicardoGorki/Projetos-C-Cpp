@@ -13,9 +13,10 @@ public:
 	ScavTrap();
 	~ScavTrap();
 	ScavTrap(std::string name);
-	ScavTrap(const ScavTrap &cpScavTrap);
-	void operator=(const ScavTrap& cp);
+	ScavTrap(const ScavTrap &other);
+	ScavTrap& operator=(const ScavTrap& other);
 	void guardGate();
+	void attack(const std::string& target);
 };
 
 #endif
