@@ -10,7 +10,7 @@ public:
 
 	Cat();
 	~Cat();
-	Cat(const Cat& cpCat);
+	Cat(const Cat& other);
 	Cat& operator=(const Cat& other);
 	void makeSound() const;
 };

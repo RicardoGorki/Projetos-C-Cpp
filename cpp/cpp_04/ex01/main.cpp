@@ -5,6 +5,10 @@
 int main()
 {
 const Animal* a[50];
+Cat b;
+Cat c;
+
+c = b;
 
 for(int i = 0; i < 50; i++)
 {
@@ -16,5 +20,8 @@ for(int i = 0; i < 50; i++)
 
 for(int i = 0; i < 50; i++)
 	delete a[i];
+
+
+
 
 }

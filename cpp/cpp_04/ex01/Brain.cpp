@@ -13,10 +13,10 @@ Brain& Brain::operator=(const Brain& other)
 	return (*this);
 }
 
-Brain::Brain(const Brain& cpBrain)
+Brain::Brain(const Brain& other)
 {
 	for (int i = 0 ; i <= 100 ; i++)
-			ideas[i] = cpBrain.ideas[i];
+			ideas[i] = other.ideas[i];
 	std::cout << "Brain copy constructor called" << std::endl;
 
 }

@@ -2,22 +2,27 @@
 
 Cat::Cat()
 {
+	std::cout << type << "Cat constructor called" << std::endl;
 	type = "Cat";
-	std::cout << type << " constructor called" << std::endl;
 	_newBrain = new Brain;
 }
 
 Cat::~Cat()
 {
-	delete _newBrain;
 	std::cout << "Cat destructor called" << std::endl;
+	delete _newBrain;
 }
 
-Cat::Cat(const Cat& cpCat) : Animal(cpCat)
+Cat::Cat(const Cat& other) : Animal()
 {
-	type = cpCat.type;
-	*_newBrain = *cpCat._newBrain;
 	std::cout << "Cat copy constructor called" << std::endl;
+	type = other.type;
+	*_newBrain = *other._newBrain;
+}
+
+std::string Cat::getIdea(int i)
+{
+	return (_newBrain->ideas[i]);
 }
 
 Cat& Cat::operator=(const Cat& other)

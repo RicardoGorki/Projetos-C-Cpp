@@ -1,8 +1,8 @@
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal() { std::cout << "Wrong animal constructor called" << std::endl; }
+WrongAnimal::WrongAnimal() : type("") { std::cout << "Wrong animal constructor called" << std::endl; }
 
-WrongAnimal::WrongAnimal(const WrongAnimal& cpWrongAnimal) : type(cpWrongAnimal.type) { std::cout << "WrongAnimal copy constructor called" << std::endl; }
+WrongAnimal::WrongAnimal(const WrongAnimal& other) : type(other.type) { std::cout << "WrongAnimal copy constructor called" << std::endl; }
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
 {

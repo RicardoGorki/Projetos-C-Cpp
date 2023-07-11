@@ -2,7 +2,6 @@
 # define BRAIN_HPP
 
 #include <iostream>
-#include <string>
 
 class Brain
 {
@@ -14,8 +13,10 @@ public:
 
 	Brain();
 	~Brain();
-	Brain(const Brain& cpBrain);
+	Brain(const Brain& other);
 	Brain& operator=(const Brain& other);
+	void setIdea(std::string ideia);
+	void getIdea(){}
 
 };
 

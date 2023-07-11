@@ -3,13 +3,13 @@
 Dog::Dog()
 {
 	type = "Dog";
-	std::cout << type << " constructor called" << std::endl; }
+	std::cout << type << "Dog constructor called" << std::endl; }
 
 Dog::~Dog() { std::cout << "Dog destructor called" << std::endl; }
 
-Dog::Dog(const Dog& cpDog) : Animal(cpDog)
+Dog::Dog(const Dog& other) : Animal()
 {
-	type = cpDog.type;
+	type = other.type;
 	std::cout << "Dog copy contructor called" << std::endl;
 }
 
