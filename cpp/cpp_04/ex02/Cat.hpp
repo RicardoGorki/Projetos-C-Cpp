@@ -14,9 +14,15 @@ public:
 
 	Cat();
 	~Cat();
-	Cat(const Cat& cpCat);
+	Cat(const Cat& other);
 	Cat& operator=(const Cat& other);
 	void makeSound() const;
+	std::string getIdea(int i);
+	void setIdea(const std::string& idea, int i);
+
+
 };
+
+
 
 #endif

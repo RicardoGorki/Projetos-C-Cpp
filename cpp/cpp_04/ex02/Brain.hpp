@@ -2,20 +2,17 @@
 # define BRAIN_HPP
 
 #include <iostream>
-#include <string>
 
 class Brain
 {
-
-protected:
-	std::string ideas[100];
 
 public:
 
 	Brain();
 	~Brain();
-	Brain(const Brain& cpBrain);
+	Brain(const Brain& other);
 	Brain& operator=(const Brain& other);
+	std::string ideas[100];
 
 };
 
