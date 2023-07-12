@@ -21,7 +21,10 @@ Fixed::Fixed(const Fixed &other)
 Fixed& Fixed::operator=(const Fixed &other)
 {
 	if (this != &other)
+	{
 		_store_fp = other._store_fp;
+		_store_bit = other._store_bit;
+	}
 	return (*this);
 };
 
