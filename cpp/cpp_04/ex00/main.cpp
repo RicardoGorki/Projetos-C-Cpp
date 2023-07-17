@@ -8,7 +8,7 @@ int main()
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 
-	const WrongAnimal *wrong = new WrongCat();
+	const WrongAnimal* wrong = new WrongCat();
 
 	std::cout << std::endl;
 	std::cout << "----Dog----" << std::endl;
