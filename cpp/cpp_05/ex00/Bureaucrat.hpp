@@ -14,6 +14,11 @@ public:
 	Bureaucrat();
 	Bureaucrat(std::string const name, int grade);
 	~Bureaucrat();
+	std::string getName() const;
+	int getGrade() const;
+	friend std::ostream& operator<<(std::ostream& os, const Bureaucrat& other);
+	int GradeTooHighException(int nValue);
+	int GradeTooLowException(int nValue);
 };
 
 #endif
