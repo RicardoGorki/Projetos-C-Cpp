@@ -23,6 +23,7 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, const Bureaucrat& other);
 	void increment();
 	void decrement();
+	void signForm();
 
 	class GradeTooHighException : public std::exception
 	{

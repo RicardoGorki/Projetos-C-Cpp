@@ -66,4 +66,13 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 	return ("Grade too low!\n");
 };
 
+void Bureaucrat::signForm()
+{
+	// if está assinado
+	//	<bureaucrat> signed <form>
+	//else
+	//	<bureaucrat> couldn’t sign <form> because <reason>.
+
+}
+
 Bureaucrat::~Bureaucrat(){};
