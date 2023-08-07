@@ -20,7 +20,6 @@ public:
 	~Bureaucrat();
 	std::string getName() const;
 	int getGrade() const;
-	friend std::ostream& operator<<(std::ostream& os, const Bureaucrat& other);
 	void increment();
 	void decrement();
 
@@ -36,5 +35,7 @@ public:
 			virtual const char* what() const throw();
 	};
 };
+
+	std::ostream& operator<<(std::ostream& os, const Bureaucrat& other);
 
 #endif
