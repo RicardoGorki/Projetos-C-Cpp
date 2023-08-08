@@ -52,7 +52,7 @@ void Bureaucrat::decrement()
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& other)
 {
-	os << other._name << " , bureaucrat grade " << other._grade;
+	os << other.getName() << " , bureaucrat grade " << other.getGrade();
 	return (os);
 };
 
@@ -66,13 +66,16 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 	return ("Grade too low!\n");
 };
 
-void Bureaucrat::signForm()
+void Bureaucrat::signForm(const Form & form)
 {
-	// if está assinado
-	//	<bureaucrat> signed <form>
-	//else
-	//	<bureaucrat> couldn’t sign <form> because <reason>.
-
-}
+	if (form.getIsAssigned() == true)
+		std::cout << getName() << " signed " << form.getName();
+	else
+	{
+		std::cout << getName() << " couldn’t sign " << form.getName()
+		<< " because " << " reason ";
+	//	alterar reason
+	}
+};
 
 Bureaucrat::~Bureaucrat(){};
