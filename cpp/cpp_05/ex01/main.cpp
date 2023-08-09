@@ -1,22 +1,17 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
 	try
 	{
-		Bureaucrat* b = new Bureaucrat("Biro", 2);
-	 	Bureaucrat* low = new Bureaucrat("Juice", 1);
-		Bureaucrat* high = new Bureaucrat("Apple", 150);
+		Bureaucrat bureaucrat("Gov", 2);
+		Form form("Odeb", 40, 50);
 
-		std::cout << (*b) << std::endl;
-		b->increment();
-		std::cout << (*b) << std::endl;
-	 	std::cout << (*low) << std::endl;
-		std::cout << (*high) << std::endl;
+		std::cout << (bureaucrat) << std::endl;
+		std::cout << (form) << std::endl;
+		bureaucrat.signForm(form);
 
-		delete b;
-	 	delete low;
-		delete high;
 	}
 	catch (std::exception& e)
     {
