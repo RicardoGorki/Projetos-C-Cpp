@@ -15,8 +15,7 @@ private:
 	Form();
 
 public:
-	Form(std::string name, int const gradeToAssign,
-		int const gradeToExecute);
+	Form(std::string name, int const gradeToAssign);
 	~Form();
 	Form(Form const & other);
 	Form& operator=(Form const & other);
@@ -24,7 +23,7 @@ public:
 	bool getIsAssigned() const;
 	int getGradeToAssign() const;
 	int getGradeToExecute() const;
-	void beSigned(Bureaucrat bureaucrat);
+	void beSigned(Bureaucrat &bureaucrat);
 	class GradeTooHighException : public std::exception
 	{
 		public:

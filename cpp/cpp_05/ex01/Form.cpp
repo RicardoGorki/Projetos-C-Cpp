@@ -1,7 +1,7 @@
 #include "Form.hpp"
 
-Form::Form(std::string name, int const gradeToAssign, int const gradeToExecute) : _name(name),
-		_gradeToAssign(gradeToAssign), _gradeToExecute(gradeToExecute), _isAssigned(false) {};
+Form::Form(std::string name, int const gradeToAssign) : _name(name),
+		_gradeToAssign(gradeToAssign), _gradeToExecute(0), _isAssigned(false) {};
 
 
 Form::Form(Form const & other) : _name(other._name),
@@ -20,7 +20,7 @@ Form& Form::operator=(Form const & other)
 std::ostream& operator<<(std::ostream& os, const Form& other)
 {
 	os << "name: " << other.getName() << ", grade to assign: " << other.getGradeToAssign()
-	<< ", isAssigned: " << other.getIsAssigned() << ", grade to execute: " << other.getGradeToExecute();
+	<< ", isAssigned: " << other.getIsAssigned();
 	return (os);
 }
 
@@ -44,7 +44,7 @@ int Form::getGradeToExecute() const
 	return (_gradeToExecute);
 }
 
-void Form::beSigned(Bureaucrat bureaucrat)
+void Form::beSigned(Bureaucrat &bureaucrat)
 {
 	if (bureaucrat.getGrade() <= getGradeToAssign())
 		_isAssigned = true;

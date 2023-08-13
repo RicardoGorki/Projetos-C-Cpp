@@ -5,8 +5,8 @@ int main()
 {
 	try
 	{
-		Bureaucrat bureaucrat("Gov", 2);
-		Form form("Odeb", 40, 50);
+		Bureaucrat bureaucrat("Gov", 22);
+		Form form("Odeb", 40);
 
 		std::cout << (bureaucrat) << std::endl;
 		std::cout << (form) << std::endl;
