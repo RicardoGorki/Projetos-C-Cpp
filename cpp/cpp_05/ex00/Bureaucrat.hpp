@@ -9,12 +9,11 @@ class Bureaucrat
 {
 
 private:
-	Bureaucrat();
 	const std::string _name;
 	int	_grade;
 
 public:
-
+	Bureaucrat();
 	Bureaucrat(std::string const name, int grade);
 	Bureaucrat(const Bureaucrat& other);
 	Bureaucrat& operator=(const Bureaucrat& other);
