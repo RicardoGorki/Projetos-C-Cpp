@@ -1,6 +1,9 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(){};
+Bureaucrat::Bureaucrat()
+{
+	throw std::logic_error("Cannot use this constructor without parameters");
+};
 
 Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name), _grade(grade)
 {
