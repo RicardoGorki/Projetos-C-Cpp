@@ -1,5 +1,5 @@
-#ifndef AForm_HPP
-#define AForm_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include "Bureaucrat.hpp"
 
@@ -12,9 +12,9 @@ private:
 	int const _gradeToAssign;
 	int const _gradeToExecute;
 	bool _isAssigned;
-	AForm();
 
 public:
+	AForm();
 	AForm(std::string name, int const gradeToAssign,
 		  int const gradeToExecute);
 	virtual ~AForm();
