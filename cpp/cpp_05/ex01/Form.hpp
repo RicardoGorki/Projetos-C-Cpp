@@ -12,9 +12,10 @@ private:
 	int const			_gradeToAssign;
 	int const			_gradeToExecute;
 	bool				_isAssigned;
-	Form();
+
 
 public:
+	Form();
 	Form(std::string name, int const gradeToAssign);
 	~Form();
 	Form(Form const & other);

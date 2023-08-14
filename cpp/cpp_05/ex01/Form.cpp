@@ -1,5 +1,10 @@
 #include "Form.hpp"
 
+Form::Form() : _gradeToAssign(0), _gradeToExecute(0)
+{
+	throw std::logic_error("Cannot use this constructor without parameters");
+};
+
 Form::Form(std::string name, int const gradeToAssign) : _name(name),
 		_gradeToAssign(gradeToAssign), _gradeToExecute(0), _isAssigned(false) {};
 
