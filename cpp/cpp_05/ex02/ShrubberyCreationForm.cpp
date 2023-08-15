@@ -18,7 +18,15 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void ShrubberyCreationForm::treeGenerator(std::ofstream &newFile) const
 {
-	 newFile << "Hello, world!" << std::endl;
+	newFile << "       _-_ " << std::endl;
+    newFile << "    /~~   ~~\\" << std::endl;
+    newFile << " /~~         ~~\\" << std::endl;
+    newFile << "{               }" << std::endl;
+    newFile << " \"  _-     -_  /" << std::endl;
+    newFile << "   ~  \\\\ //  ~" << std::endl;
+    newFile << "_- -   | | _- _" << std::endl;
+    newFile << "  _ -  | |   -_" << std::endl;
+    newFile << "      // \\\\" << std::endl;
 };
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const

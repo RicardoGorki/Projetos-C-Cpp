@@ -1,9 +1,6 @@
 #include "AForm.hpp"
 
-AForm::AForm() : _gradeToAssign(0), _gradeToExecute(0)
-{
-
-};
+AForm::AForm() : _gradeToAssign(0), _gradeToExecute(0){};
 
 AForm::AForm(std::string name, int const gradeToAssign, int const gradeToExecute) : _name(name),
 																					_gradeToAssign(gradeToAssign), _gradeToExecute(gradeToExecute), _isAssigned(false){};
