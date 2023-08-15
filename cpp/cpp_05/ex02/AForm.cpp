@@ -2,7 +2,7 @@
 
 AForm::AForm() : _gradeToAssign(0), _gradeToExecute(0)
 {
-	throw "AForm is a Abstract class";
+
 };
 
 AForm::AForm(std::string name, int const gradeToAssign, int const gradeToExecute) : _name(name),

@@ -2,6 +2,8 @@
 #define SHRUBBERYCREATIONFORM_HPP
 
 # include "AForm.hpp"
+#include <fstream>
+class AForm;
 class ShrubberyCreationForm : public AForm
 {
 private:
@@ -9,8 +11,11 @@ private:
 
 public:
 	ShrubberyCreationForm();
+	ShrubberyCreationForm(std::string target);
 	ShrubberyCreationForm(const ShrubberyCreationForm &other);
 	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
+	void execute(Bureaucrat const & executor) const ;
+	void treeGenerator(std::ofstream &newFile) const;
 	~ShrubberyCreationForm();
 };
 
