@@ -13,6 +13,35 @@ int main()
 		AForm* rrf;
 		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 		std::cout << *rrf << std::endl;
+		delete rrf;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	try
+	{
+		std::cout << std::endl << std::endl;
+		Intern someRandomIntern;
+		AForm* rrf;
+		rrf = someRandomIntern.makeForm("presidential pardon", "Gift");
+		std::cout << *rrf << std::endl;
+		delete rrf;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	try
+	{
+		std::cout << std::endl << std::endl;
+		Intern someRandomIntern;
+		AForm* rrf;
+		rrf = someRandomIntern.makeForm("shrubbery creation", "Tree");
+		std::cout << *rrf << std::endl;
+		delete rrf;
 	}
 	catch (std::exception &e)
 	{
