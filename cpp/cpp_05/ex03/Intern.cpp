@@ -15,7 +15,7 @@ Intern &Intern::operator=(Intern &other)
 
 AForm *Intern::makeForm(std::string nameForm, std::string targetForm)
 {
-	std::string levels[4] = {"robotomy request", "presidential pardon", "shrubbery creation"};
+	std::string levels[3] = {"robotomy request", "presidential pardon", "shrubbery creation"};
 	int op;
 	int i;
 
@@ -41,7 +41,7 @@ AForm *Intern::makeForm(std::string nameForm, std::string targetForm)
 		return new ShrubberyCreationForm(targetForm);
 		break;
 	default:
-		throw std::logic_error("name of this form does not exist");
+		throw std::logic_error(nameForm + " name of this form does not exist");
 		break;
 	}
 	return (NULL);
