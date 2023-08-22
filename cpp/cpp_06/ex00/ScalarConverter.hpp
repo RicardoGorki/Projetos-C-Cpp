@@ -2,23 +2,27 @@
 #define SCALARCOVERTER_HPP
 
 #include <iostream>
+#include <iomanip>
 #include <string>
-#include <cmath>
 #include <climits>
 #include <cstdlib>
 
-// cstdlib atof atoi atol
-// math isnan - e +inf
-// climits max min
-
 class ScalarConverter
 {
-public:
+private:
 	ScalarConverter();
+	static std::string handleError(std::string szToNumber);
+	static void convertToChar(std::string szToNumber);
+	static void convertToInt(std::string szToNumber);
+	static void convertToFloat(std::string szToNumber);
+	static void convertToDouble(std::string szToNumber);
+
+public:
 	~ScalarConverter();
 	ScalarConverter(ScalarConverter &other);
 	ScalarConverter &operator=(ScalarConverter &other);
-	void convert(std::string szToNum);
+	static void convert(std::string szToNumber);
+
 };
 
 #endif
