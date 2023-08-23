@@ -1,7 +1,7 @@
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter() {};
-ScalarConverter::~ScalarConverter() {};
+ScalarConverter::ScalarConverter(){};
+ScalarConverter::~ScalarConverter(){};
 ScalarConverter::ScalarConverter(ScalarConverter &other)
 {
 	(void)other;
@@ -12,88 +12,233 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter &other)
 	return (*this);
 };
 
- std::string ScalarConverter::handleError(std::string szToNumber)
-{
-	double checkValue;
-	checkValue = atof(szToNumber.c_str());
-	for (int i = 0 ; i < szToNumber[i] ; i++)
-	{
-		if (!std::isdigit(szToNumber[i]) && checkValue == 0.0)
-			return ("nan");
-	}
-	return (szToNumber);
-}
-
 void ScalarConverter::convertToChar(std::string szToNumber)
 {
 	if (szToNumber == "nan" || szToNumber == "+inf" || szToNumber == "-inf")
-	{
 		std::cout << "impossible" << std::endl;
-		return ;
-	}
-	char newValue;
-	newValue = static_cast<char>(atof(szToNumber.c_str()));
-	if (newValue < 32 || newValue > 126)
-	{
+	char newChar;
+	newChar = static_cast<char>(szToNumber[0]);
+	if (newChar < 32 || newChar > 126)
 		std::cout << "Non displayable" << std::endl;
-		return ;
-	}
-	else
-	{
-		std::cout << "'" <<  newValue << "'" << std::endl;
-		return ;
-	}
+	else if (newChar > 31 && newChar < 127)
+		std::cout << "'" << newChar << "'" << std::endl;
+
+	std::cout << "int:\t ";
+	if (szToNumber == "nan" || szToNumber == "+inf" || szToNumber == "-inf")
+		std::cout << "impossible" << std::endl;
+
+	int newInt;
+	newInt = static_cast<int>(newChar);
+	std::cout << newInt << std::endl;
+
+	std::cout << "float:\t ";
+	float newFloat;
+	newFloat = static_cast<float>(newChar);
+	std::cout << std::fixed << std::setprecision(1) << newFloat << "f" << std::endl;
+
+	std::cout << "double:\t ";
+	double newDouble;
+	newDouble = static_cast<double>(newChar);
+	std::cout << std::fixed << std::setprecision(1) << newDouble << std::endl;
 };
 
 void ScalarConverter::convertToInt(std::string szToNumber)
 {
 	if (szToNumber == "nan" || szToNumber == "+inf" || szToNumber == "-inf")
-	{
 		std::cout << "impossible" << std::endl;
-		return ;
-	}
-	int newValue;
-	newValue = static_cast<int>(atof(szToNumber.c_str()));
-	if (newValue < INT_MIN || newValue > INT_MAX)
-	{
-		std::cout << "overflow" << std::endl;
-		return ;
-	}
-	else
-	{
-		std::cout << newValue << std::endl;
-		return ;
-	}
+
+	int newInt;
+	newInt = static_cast<int>(atoi(szToNumber.c_str()));
+	std::cout << newInt << std::endl;
+
+	std::cout << "char:\t";
+	if (szToNumber == "nan" || szToNumber == "+inf" || szToNumber == "-inf")
+		std::cout << "impossible" << std::endl;
+
+	char newChar;
+	newChar = static_cast<char>(newInt);
+	if (newChar < 32 || newChar > 126)
+		std::cout << "Non displayable" << std::endl;
+	else if (newChar > 31 && newChar < 127)
+		std::cout << "'" << newChar << "'" << std::endl;
+
+	std::cout << "float:\t ";
+	float newFloat;
+	newFloat = static_cast<float>(newInt);
+	std::cout << std::fixed << std::setprecision(1) << newFloat << "f" << std::endl;
+	std::cout << "double:\t ";
+	double newDouble;
+	newDouble = static_cast<double>(newInt);
+	std::cout << std::fixed << std::setprecision(1) << newDouble << std::endl;
 };
 
 void ScalarConverter::convertToFloat(std::string szToNumber)
 {
-	float newValue;
-	newValue = static_cast<float>(atof(szToNumber.c_str()));
-	std::cout << std::fixed << std::setprecision(1) << newValue << "f" << std::endl;
-	return ;
+	float newFloat;
+	newFloat = static_cast<float>(atof(szToNumber.c_str()));
+	std::cout << std::fixed << std::setprecision(1) << newFloat << "f" << std::endl;
+
+	std::cout << "char:\t";
+
+	if (szToNumber == "nan" || szToNumber == "+inf" || szToNumber == "-inf")
+		std::cout << "impossible" << std::endl;
+
+	char newChar;
+	newChar = static_cast<char>(newFloat);
+	if (newChar < 32 || newChar > 126)
+		std::cout << "Non displayable" << std::endl;
+	else if (newChar > 31 && newChar < 127)
+		std::cout << "'" << newChar << "'" << std::endl;
+
+	std::cout << "int:\t ";
+
+	if (szToNumber == "nan" || szToNumber == "+inf" || szToNumber == "-inf")
+		std::cout << "impossible" << std::endl;
+
+	int newInt;
+	newInt = static_cast<int>(newFloat);
+	std::cout << newInt << std::endl;
+
+	std::cout << "double:\t ";
+	double newDouble;
+	newDouble = static_cast<double>(newFloat);
+	std::cout << std::fixed << std::setprecision(1) << newDouble << std::endl;
 };
 
 void ScalarConverter::convertToDouble(std::string szToNumber)
 {
-	double newValue;
-	newValue = static_cast<double>(atof(szToNumber.c_str()));
-	std::cout << std::fixed << std::setprecision(1) << newValue << std::endl;
-	return ;
+	double newDouble;
+	newDouble = static_cast<double>(atof(szToNumber.c_str()));
+	std::cout << std::fixed << std::setprecision(1) << newDouble << std::endl;
+
+	std::cout << "char:\t";
+
+	if (szToNumber == "nan" || szToNumber == "+inf" || szToNumber == "-inf")
+		std::cout << "impossible" << std::endl;
+
+	char newChar;
+	newChar = static_cast<char>(newDouble);
+	if (newChar < 32 || newChar > 126)
+		std::cout << "Non displayable" << std::endl;
+	else if (newChar > 31 && newChar < 127)
+		std::cout << "'" << newChar << "'" << std::endl;
+
+	std::cout << "int:\t ";
+
+	if (szToNumber == "nan" || szToNumber == "+inf" || szToNumber == "-inf")
+		std::cout << "impossible" << std::endl;
+
+	int newInt;
+	newInt = static_cast<int>(newDouble);
+	std::cout << newInt << std::endl;
+	std::cout << "float:\t ";
+	float newFloat;
+	newFloat = static_cast<float>(newDouble);
+	std::cout << std::fixed << std::setprecision(1) << newFloat << "f" << std::endl;
+	return;
 };
 
+int ScalarConverter::identifyType(std::string szToNumber)
+{
+	if ((szToNumber == "nan") || (szToNumber == "+inf") || (szToNumber == "inf") || (szToNumber == "-inf"))
+		return (0); // errors especiais
+	if (szToNumber.length() == 1)
+	{
+		if ((szToNumber[0] > 31 && szToNumber[0] < 48) ||
+			(szToNumber[0] > 57 && szToNumber[0] < 127))
+			return (1); // char
+	}
+	if (szToNumber.length() == 1)
+	{
+		if (szToNumber[0] > 47 && szToNumber[0] < 58)
+			return (2); // int
+	}
+	int count = 0;
+	int countf = 0;
+	for (int i = 0; i < (int)szToNumber.length(); i++)
+	{
+		if (szToNumber[i] == '.')
+		{
+			count++;
+			if (count > 1)
+				return (0);
+		}
+		if ((szToNumber[i] > 31 && szToNumber[i] < 46) || (szToNumber[i] == 47)
+		 	|| (szToNumber[i] > 57 && szToNumber[i] < 102) || (szToNumber[i] > 102))
+			return (0);
+		if (szToNumber[i] == 102)
+			countf++;
+	}
+	if (countf > 1 || count > 1)
+		return (0);
+	if (countf == 1 && count == 1 && szToNumber[szToNumber.length()] == 102)
+		return (3);
+	else if (countf == 1 && count == 1 && szToNumber[szToNumber.length()] != 102)
+		return (0);
+	if (count == 1 && countf == 0)
+		return (4);
+	return (2);
+}
+
+void ScalarConverter::handleError(std::string szToNumber)
+{
+	if (szToNumber == "nan")
+	{
+		std::cout << "char:\t" << "impossible" << std::endl;
+		std::cout << "int:\t" << "impossible" << std::endl;
+		std::cout << "float:\t" << "nanf" << std::endl;
+		std::cout << "double:\t" << "nan" << std::endl;
+	}
+	else if ((szToNumber == "+inf") || (szToNumber == "inf"))
+	{
+		std::cout << "char:\t" << "impossible" << std::endl;
+		std::cout << "int:\t" << "impossible" << std::endl;
+		std::cout << "float:\t" << "inff" << std::endl;
+		std::cout << "double:\t" << "inf" << std::endl;
+	}
+	else if (szToNumber == "-inf")
+	{
+		std::cout << "char:\t" << "impossible" << std::endl;
+		std::cout << "int:\t" << "impossible" << std::endl;
+		std::cout << "float:\t" << "-inff" << std::endl;
+		std::cout << "double:\t" << "-inf" << std::endl;
+	}
+	else
+	{
+		std::cout << "char:\t" << "impossible" << std::endl;
+		std::cout << "int:\t" << "impossible" << std::endl;
+		std::cout << "float:\t" << "nanf" << std::endl;
+		std::cout << "double:\t" << "nan" << std::endl;
+	}
+}
 
 void ScalarConverter::convert(std::string szToNumber)
 {
-	std::string newValue;
-	newValue = handleError(szToNumber);
+	int op;
+	op = identifyType(szToNumber);
 
-	std::cout << "char:\t";
-	convertToChar(newValue);
-	std::cout << "int:\t";
-	convertToInt(newValue);
-	std::cout << "float:\t";
-	convertToFloat(newValue);
-	std::cout << "double:\t";
-	convertToDouble(newValue);
+	switch (op)
+	{
+	case 0:
+		handleError(szToNumber);
+		break;
+	case 1:
+		std::cout << "char:\t";
+		convertToChar(szToNumber);
+		break;
+	case 2:
+		std::cout << "int:\t";
+		convertToInt(szToNumber);
+		break;
+	case 3:
+		std::cout << "float:\t";
+		convertToFloat(szToNumber);
+		break;
+	case 4:
+		std::cout << "double:\t";
+		convertToDouble(szToNumber);
+		break;
+	default:
+		break;
+	}
 };

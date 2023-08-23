@@ -11,7 +11,8 @@ class ScalarConverter
 {
 private:
 	ScalarConverter();
-	static std::string handleError(std::string szToNumber);
+	static void handleError(std::string szToNumber);
+	static int identifyType(std::string szToNumber);
 	static void convertToChar(std::string szToNumber);
 	static void convertToInt(std::string szToNumber);
 	static void convertToFloat(std::string szToNumber);
