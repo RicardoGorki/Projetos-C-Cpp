@@ -144,17 +144,17 @@ int ScalarConverter::identifyType(std::string szToNumber)
 		|| (szToNumber == "inf") || (szToNumber == "-inf")
 		|| (szToNumber == "nanf") || (szToNumber == "+inff")
 		|| (szToNumber == "inff") || (szToNumber == "-inff"))
-		return (0); // errors especiais
+		return (0);
 	if (szToNumber.length() == 1)
 	{
 		if ((szToNumber[0] > 31 && szToNumber[0] < 48) ||
 			(szToNumber[0] > 57 && szToNumber[0] < 127))
-			return (1); // char
+			return (1);
 	}
 	if (szToNumber.length() == 1)
 	{
 		if (szToNumber[0] > 47 && szToNumber[0] < 58)
-			return (2); // int
+			return (2);
 	}
 	int count = 0;
 	int countf = 0;

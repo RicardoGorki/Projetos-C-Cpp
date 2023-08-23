@@ -5,14 +5,16 @@ class Data
 {
 private:
 	Data();
+	Data(Data &other);
+	Data &operator=(Data &other);
 	unsigned int _unValue;
 
 public:
 	Data(unsigned int unValue);
 	~Data();
 	unsigned int getValue();
-	Data(Data &other);
-	Data &operator=(Data &other);
+
+
 };
 
 #endif
