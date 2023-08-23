@@ -140,7 +140,10 @@ void ScalarConverter::convertToDouble(std::string szToNumber)
 
 int ScalarConverter::identifyType(std::string szToNumber)
 {
-	if ((szToNumber == "nan") || (szToNumber == "+inf") || (szToNumber == "inf") || (szToNumber == "-inf"))
+	if ((szToNumber == "nan") || (szToNumber == "+inf")
+		|| (szToNumber == "inf") || (szToNumber == "-inf")
+		|| (szToNumber == "nanf") || (szToNumber == "+inff")
+		|| (szToNumber == "inff") || (szToNumber == "-inff"))
 		return (0); // errors especiais
 	if (szToNumber.length() == 1)
 	{
@@ -155,25 +158,30 @@ int ScalarConverter::identifyType(std::string szToNumber)
 	}
 	int count = 0;
 	int countf = 0;
+	int signal = 0;
 	for (int i = 0; i < (int)szToNumber.length(); i++)
 	{
+		if (signal < 1 && (szToNumber[0] == '+' || szToNumber[0] == '-'))
+		{
+			signal++;
+			i++;
+		}
 		if (szToNumber[i] == '.')
 		{
 			count++;
 			if (count > 1)
 				return (0);
 		}
-		if ((szToNumber[i] > 31 && szToNumber[i] < 46) || (szToNumber[i] == 47)
-		 	|| (szToNumber[i] > 57 && szToNumber[i] < 102) || (szToNumber[i] > 102))
+		if ((szToNumber[i] > 31 && szToNumber[i] < 46) || (szToNumber[i] == 47) || (szToNumber[i] > 57 && szToNumber[i] < 102) || (szToNumber[i] > 102))
 			return (0);
 		if (szToNumber[i] == 102)
 			countf++;
 	}
 	if (countf > 1 || count > 1)
 		return (0);
-	if (countf == 1 && count == 1 && szToNumber[szToNumber.length()] == 102)
+	if (countf == 1 && count == 1 && szToNumber[szToNumber.length() - 1] == 102)
 		return (3);
-	else if (countf == 1 && count == 1 && szToNumber[szToNumber.length()] != 102)
+	else if (countf == 1 && count == 1 && szToNumber[szToNumber.length() - 1] != 102)
 		return (0);
 	if (count == 1 && countf == 0)
 		return (4);
@@ -184,31 +192,73 @@ void ScalarConverter::handleError(std::string szToNumber)
 {
 	if (szToNumber == "nan")
 	{
-		std::cout << "char:\t" << "impossible" << std::endl;
-		std::cout << "int:\t" << "impossible" << std::endl;
-		std::cout << "float:\t" << "nanf" << std::endl;
-		std::cout << "double:\t" << "nan" << std::endl;
+		std::cout << "char:\t"
+				  << "impossible" << std::endl;
+		std::cout << "int:\t"
+				  << "impossible" << std::endl;
+		std::cout << "float:\t"
+				  << "nanf" << std::endl;
+		std::cout << "double:\t"
+				  << "nan" << std::endl;
 	}
 	else if ((szToNumber == "+inf") || (szToNumber == "inf"))
 	{
-		std::cout << "char:\t" << "impossible" << std::endl;
-		std::cout << "int:\t" << "impossible" << std::endl;
-		std::cout << "float:\t" << "inff" << std::endl;
-		std::cout << "double:\t" << "inf" << std::endl;
+		std::cout << "char:\t"
+				  << "impossible" << std::endl;
+		std::cout << "int:\t"
+				  << "impossible" << std::endl;
+		std::cout << "float:\t"
+				  << "inff" << std::endl;
+		std::cout << "double:\t"
+				  << "inf" << std::endl;
 	}
 	else if (szToNumber == "-inf")
 	{
-		std::cout << "char:\t" << "impossible" << std::endl;
-		std::cout << "int:\t" << "impossible" << std::endl;
-		std::cout << "float:\t" << "-inff" << std::endl;
-		std::cout << "double:\t" << "-inf" << std::endl;
+		std::cout << "char:\t"
+				  << "impossible" << std::endl;
+		std::cout << "int:\t"
+				  << "impossible" << std::endl;
+		std::cout << "float:\t"
+				  << "-inff" << std::endl;
+		std::cout << "double:\t"
+				  << "-inf" << std::endl;
+	}
+	else if (szToNumber == "nanf")
+	{
+		std::cout << "char:\t"
+				  << "impossible" << std::endl;
+		std::cout << "int:\t"
+				  << "impossible" << std::endl;
+		std::cout << "float:\t"
+				  << "nanf" << std::endl;
+		std::cout << "double:\t"
+				  << "nan" << std::endl;
+	}
+	else if ((szToNumber == "+inff") || (szToNumber == "inff"))
+	{
+		std::cout << "char:\t"
+				  << "impossible" << std::endl;
+		std::cout << "int:\t"
+				  << "impossible" << std::endl;
+		std::cout << "float:\t"
+				  << "inff" << std::endl;
+		std::cout << "double:\t"
+				  << "inf" << std::endl;
+	}
+	else if (szToNumber == "-inff")
+	{
+		std::cout << "char:\t"
+				  << "impossible" << std::endl;
+		std::cout << "int:\t"
+				  << "impossible" << std::endl;
+		std::cout << "float:\t"
+				  << "-inff" << std::endl;
+		std::cout << "double:\t"
+				  << "-inf" << std::endl;
 	}
 	else
 	{
-		std::cout << "char:\t" << "impossible" << std::endl;
-		std::cout << "int:\t" << "impossible" << std::endl;
-		std::cout << "float:\t" << "nanf" << std::endl;
-		std::cout << "double:\t" << "nan" << std::endl;
+		std::cout << "Only numbers and pseudo literals" << std::endl;
 	}
 }
 
