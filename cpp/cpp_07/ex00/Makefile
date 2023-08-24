@@ -1,4 +1,6 @@
-SRCS =		main.cpp	\
+SRCS =		main.cpp		\
+
+HPPS =		whatever.hpp	\
 
 OBJS =		$(SRCS:.cpp=.o)
 
@@ -8,7 +10,7 @@ CFLAGS =	-Wall -Werror -Wextra -std=c++98
 
 RM =		rm -f
 
-NAME =		convert
+NAME =		whatever
 
 RED			=		\033[0;31m
 GREEN		=		\033[0;32m
@@ -20,7 +22,7 @@ RESET		=		\033[0m
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS) $(HPPS)
 			@$(CPP) $(CFLAGS) $(OBJS) -o $(NAME)
 			@echo "$(GREEN)$(NAME) created$(RESET)"
 
