@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <set>
+#include <vector>
 
 class Span
 {
@@ -22,6 +23,15 @@ public:
 	void generator(Span &other);
 	unsigned int shortestSpan();
 	unsigned int longestSpan();
+
+	template<typename Iterator>
+	void rangeGenerator(Iterator rangeBegin, Iterator rangeEnd)
+	{
+		for (Iterator range = rangeBegin; range != rangeEnd; range++ )
+		{
+			addNumber(*range);
+		}
+	}
 };
 
 #endif

@@ -4,18 +4,19 @@ int main()
 {
 	try
 	{
-		Span sp = Span(15);
-		sp.generator(sp);
-		/* sp.addNumber(6);
-		sp.addNumber(3);
-		sp.addNumber(17);
-		sp.addNumber(9);
-		sp.addNumber(11); */
-
-		/* std::multiset<int>::iterator it;
-		for (it = _array.begin(); it != _array.end(); ++it)
-        	std::cout << *it << " ";
-		std::cout << std::endl; */
+		Span sp = Span(4);
+		//sp.generator(sp);
+		/*std::vector<int> newVector;
+		newVector.push_back(5);
+		newVector.push_back(15);
+		newVector.push_back(25);
+		newVector.push_back(55);
+		sp.rangeGenerator(newVector.begin(), newVector.end());*/
+		sp.addNumber(5);
+		sp.addNumber(15);
+		sp.addNumber(25);
+		sp.addNumber(55);
+		//sp.addNumber(11);
 
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;

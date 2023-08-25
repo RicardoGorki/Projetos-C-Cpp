@@ -50,10 +50,10 @@ unsigned int Span::shortestSpan()
 		std::multiset<int>::iterator it = _array.begin();
 		std::multiset<int>::iterator next = it;
 		++next;
-		int count = *it;
+		int count = *next;
 		for (; next != _array.end(); ++it, ++next)
 		{
-			if (*next - *it < count)
+			if (*next - *it <= count)
 				count = *next - *it;
 		}
 		return (count);
