@@ -28,6 +28,7 @@ $(NAME):	$(OBJS) $(HPPS)
 			@echo "$(GREEN)$(NAME) created$(RESET)"
 
 clean:
+			@$(RM) $(OBJS)
 			@echo "$(RED)objects deleted$(RESET)"
 
 fclean:		clean
