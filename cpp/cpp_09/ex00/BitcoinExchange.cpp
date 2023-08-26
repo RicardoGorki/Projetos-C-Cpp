@@ -1,5 +1,53 @@
 #include "BitcoinExchange.hpp"
 
+void displayError(const std::string &input)
+{
+	std::cout << "Error: bad input => " << input << std::endl;
+}
+
+int verifyFormat(const std::string &input)
+{
+	if (input.length() < 14)
+	{
+		displayError(input);
+		return (0);
+	}
+	for (size_t i = 0; i < input.length(); i++)
+	{
+		if (((i < 4) || (i > 4 && i < 7)  || (i > 7 && i < 10 ) ) && !isdigit(input[i]))
+		{
+			displayError(input);
+			return (0);
+		}
+		if ((i == 4 || i == 7) && input[i] != '-')
+		{
+			displayError(input);
+			return (0);
+		}
+		if (((i == 10) || (i == 12)) && input[i] != ' ')
+		{
+			displayError(input);
+			return (0);
+		}
+		if ((i == 11) && input[i] != '|')
+		{
+			displayError(input);
+			return (0);
+		}
+		if ((i == 13) && ( input[i] != '-' && input[i] != '+' && !isdigit(input[i]) ))
+		{
+			displayError(input);
+			return (0);
+		}
+	}
+	if (!isdigit(input[input.length() - 1]))
+	{
+			displayError(input);
+			return (0);
+	}
+	return (1);
+}
+
 int isDateInRange(const Date &date, const Date &rangeStart, const Date &rangeEnd)
 {
 	if (date.year < rangeStart.year || date.year > rangeEnd.year)
@@ -40,15 +88,30 @@ void displayFormat(int year, int month, int day, float quantity)
 			  << " = " << value << std::endl;
 }
 
+bool isNumeric(const std::string &str)
+{
+	int count = 0;
+	for (size_t i = 13; i < str.length(); ++i)
+	{
+		if (str[13] == '-' || str[13] == '+')
+			i++;
+		if (str[i] == '.')
+			count++;
+		if ((!isdigit(str[i]) && str[i] != '.') && count < 2)
+			return false;
+	}
+	return true;
+}
+
 int checkStructure(const std::string &input)
 {
 	std::istringstream stream(input);
 	int year, month, day;
 	float quantity;
-	char dashFirst, dashSecond, delimiter, spaceFirst, spaceSecond;
+	char dashFirst, dashSecond, delimiter;
 
-	stream >> year >> dashFirst >> month >> dashSecond >> day >> spaceFirst >> delimiter >> spaceSecond >> quantity;
-	if (stream.fail() || spaceFirst != 32 || spaceSecond != 32 || dashFirst != '-' || dashSecond != '-' || !year || !month || !day || delimiter != '|' || !quantity)
+	stream >> year >> dashFirst >> month >> dashSecond >> day >> delimiter >> quantity;
+	if (stream.fail() ||  dashFirst != '-' || dashSecond != '-' || !year || !month || !day || delimiter != '|' || !quantity)
 	{
 		std::cout << "Error: bad input => " << input << std::endl;
 		return 1;
@@ -65,6 +128,12 @@ int checkStructure(const std::string &input)
 
 	if (checkQuantity(quantity))
 		return (1);
+
+	if (!isNumeric(input))
+	{
+		std::cout << "Error: bad input => " << input << std::endl;
+		return (1);
+	}
 
 	displayFormat(year, month, day, quantity);
 

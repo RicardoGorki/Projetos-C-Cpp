@@ -7,14 +7,15 @@ int main(int argc, char **argv)
 		std::ifstream file(argv[1]);
 		if (!file.is_open())
 		{
-			std::cerr << "Não foi possível abrir o arquivo." << std::endl;
+			std::cerr << "Error: could not open file." << std::endl;
 			return 1;
 		}
 		std::string line;
 		std::getline(file, line);
 		while (std::getline(file, line))
 		{
-			checkStructure(line);
+			if (verifyFormat(line))
+				checkStructure(line);
 		};
 		file.close();
 	}
