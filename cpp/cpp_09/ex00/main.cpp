@@ -4,8 +4,19 @@ int main(int argc, char **argv)
 {
 	if (argc == 2)
 	{
-		(void )argv;
-		checkDate(getOnlyData(" 2011-12-1 | 3"));
+		std::ifstream file(argv[1]);
+		if (!file.is_open())
+		{
+			std::cerr << "Não foi possível abrir o arquivo." << std::endl;
+			return 1;
+		}
+		std::string line;
+		std::getline(file, line);
+		while (std::getline(file, line))
+		{
+			checkStructure(line);
+		};
+		file.close();
 	}
 	else
 		std::cout << "Error: could not open file." << std::endl;

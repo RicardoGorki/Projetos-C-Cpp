@@ -1,28 +1,5 @@
 #include "BitcoinExchange.hpp"
 
-std::string trim(const std::string &str)
-{
-	size_t firstNonSpace = str.find_first_not_of(" \t\r\n");
-	size_t lastNonSpace = str.find_last_not_of(" \t\r\n");
-
-	if (firstNonSpace == std::string::npos)
-		return "";
-	return (str.substr(firstNonSpace, lastNonSpace - firstNonSpace + 1));
-}
-
-std::string getOnlyData(const std::string &input)
-{
-	std::istringstream stream(input);
-	std::string value;
-	std::string onlyData;
-
-	std::getline(stream, value, '|');
-	std::istringstream streamValue(value);
-	onlyData = trim(value);
-	std::cout << onlyData << std::endl;
-	return (onlyData);
-}
-
 int isDateInRange(const Date &date, const Date &rangeStart, const Date &rangeEnd)
 {
 	if (date.year < rangeStart.year || date.year > rangeEnd.year)
@@ -34,27 +11,62 @@ int isDateInRange(const Date &date, const Date &rangeStart, const Date &rangeEnd
 	return 0;
 }
 
-int checkDate(const std::string &input)
+int checkQuantity(float quantity)
 {
-	std::string dateStr = input;
-	int year;
-	int month;
-	int day;
+	if (quantity < 0.1)
+	{
+		std::cout << "Error: not a positive number." << std::endl;
+		return (1);
+	}
+	if (quantity > 999.99)
+	{
+		std::cout << "Error: too large a number." << std::endl;
+		return (1);
+	}
+	return (0);
+}
 
-	std::istringstream dateStream(dateStr);
-	char dash;
+void displayFormat(int year, int month, int day, float quantity)
+{
+	float value = 1;
 
-	dateStream >> year >> dash >> month >> dash >> day;
+	std::cout << year << "-";
+	if (month < 10)
+		std::cout << "0";
+	std::cout << month << "-";
+	if (day < 10)
+		std::cout << "0";
+	std::cout << day << " => " << quantity
+			  << " = " << value << std::endl;
+}
 
-	std::cout << "Ano: " << year << ", Mês: " << month << ", Dia: " << day << std::endl;
+int checkStructure(const std::string &input)
+{
+	std::istringstream stream(input);
+	int year, month, day;
+	float quantity;
+	char dashFirst, dashSecond, delimiter, spaceFirst, spaceSecond;
+
+	stream >> year >> dashFirst >> month >> dashSecond >> day >> spaceFirst >> delimiter >> spaceSecond >> quantity;
+	if (stream.fail() || spaceFirst != 32 || spaceSecond != 32 || dashFirst != '-' || dashSecond != '-' || !year || !month || !day || delimiter != '|' || !quantity)
+	{
+		std::cout << "Error: bad input => " << input << std::endl;
+		return 1;
+	}
+
 	Date dateToCheck = {year, month, day};
 	Date rangeStart = {1900, 1, 1};
 	Date rangeEnd = {2023, 12, 31};
-
 	if (isDateInRange(dateToCheck, rangeStart, rangeEnd))
 	{
-		std::cout << "Error: put a more recent data " << std::endl;
+		std::cout << "Error: bad range date " << year << "-" << month << "-" << day << std::endl;
 		return 1;
 	}
-	return (0);
+
+	if (checkQuantity(quantity))
+		return (1);
+
+	displayFormat(year, month, day, quantity);
+
+	return 0;
 }
