@@ -74,18 +74,97 @@ int checkQuantity(float quantity)
 	return (0);
 }
 
-void displayFormat(int year, int month, int day, float quantity)
+size_t localizeLowerDate(const std::vector<std::string> data, size_t save_last, int inputDay)
 {
-	float value = 1;
+	for (size_t i = save_last; i < data.size(); i++)
+	{
+		std::istringstream stream(data[i]);
+		int dataYear, dataMonth, dataDay;
+		char dashFirst, dashSecond;
 
-	std::cout << year << "-";
-	if (month < 10)
-		std::cout << "0";
-	std::cout << month << "-";
-	if (day < 10)
-		std::cout << "0";
-	std::cout << day << " => " << quantity
-			  << " = " << value << std::endl;
+		stream >> dataYear >> dashFirst >> dataMonth >> dashSecond >> dataDay;
+		if (dataDay < inputDay)
+			save_last = i;
+		if (dataDay > inputDay)
+			break ;
+	}
+	return (save_last);
+}
+
+void displayFormat(int inputYear, int inputMonth, int inputDay, float inputQuantity, const std::vector<std::string> data)
+{
+	size_t i;
+	int prevYear = 0, prevMonth = 0 , prevDay = 0;
+	size_t save_last;
+	for (i = 0; i < data.size(); ++i)
+	{
+		std::istringstream stream(data[i]);
+		int dataYear, dataMonth, dataDay;
+        char dashFirst, dashSecond;
+
+        stream >> dataYear >> dashFirst >> dataMonth >> dashSecond >> dataDay;
+		if (dataYear == inputYear)
+		{
+			if (!prevYear)
+			{
+				prevYear = inputYear;
+				save_last = i;
+			}
+			if (dataMonth == inputMonth)
+			{
+				if (!prevMonth)
+				{
+					prevMonth = inputMonth;
+					save_last = i;
+				}
+				if (dataDay == inputDay)
+				{
+					prevDay = inputDay;
+					break ;
+				}
+			}
+		}
+    }
+
+	if (!prevDay)
+	{
+		save_last = localizeLowerDate(data, save_last, inputDay);
+		std::istringstream stream(data[save_last]);
+		int dataYear, dataMonth, dataDay;
+		float value;
+		char dashFirst, dashSecond, delimiter;
+		stream >> dataYear >> dashFirst >> dataMonth >> dashSecond >> dataDay >> delimiter >> value;
+		value *= inputQuantity;
+		std::cout << inputYear << "-";
+		if (inputMonth < 10)
+			std::cout << "0";
+		std::cout << inputMonth << "-";
+		if (inputDay < 10)
+			std::cout << "0";
+		std::cout << inputDay;
+		std::cout << " => " << inputQuantity << " = ";
+		std::cout << std::setprecision(2)
+				<<  value << std::endl;
+	}
+	else
+	{
+		std::istringstream stream(data[i]);
+		int dataYear, dataMonth, dataDay;
+		float value;
+		char dashFirst, dashSecond, delimiter;
+		stream >> dataYear >> dashFirst >> dataMonth >> dashSecond >> dataDay >> delimiter >> value;
+		value *= inputQuantity;
+		std::cout << inputYear << "-";
+		if (inputMonth < 10)
+			std::cout << "0";
+		std::cout << inputMonth << "-";
+		if (inputDay < 10)
+			std::cout << "0";
+		std::cout << inputDay;
+		std::cout << " => " << inputQuantity << " = ";
+		std::cout << std::setprecision(2)
+				<<  value << std::endl;
+	}
 }
 
 bool isNumeric(const std::string &str)
@@ -103,7 +182,7 @@ bool isNumeric(const std::string &str)
 	return true;
 }
 
-int checkStructure(const std::string &input)
+int checkStructure(const std::string &input, const std::vector<std::string> &data)
 {
 	std::istringstream stream(input);
 	int year, month, day;
@@ -113,13 +192,13 @@ int checkStructure(const std::string &input)
 	stream >> year >> dashFirst >> month >> dashSecond >> day >> delimiter >> quantity;
 	if (stream.fail() ||  dashFirst != '-' || dashSecond != '-' || !year || !month || !day || delimiter != '|' || !quantity)
 	{
-		std::cout << "Error: bad input => " << input << std::endl;
+		displayError(input);
 		return 1;
 	}
 
 	Date dateToCheck = {year, month, day};
-	Date rangeStart = {1900, 1, 1};
-	Date rangeEnd = {2023, 12, 31};
+	Date rangeStart = {2009, 1, 1};
+	Date rangeEnd = {2022, 12, 31};
 	if (isDateInRange(dateToCheck, rangeStart, rangeEnd))
 	{
 		std::cout << "Error: bad range date " << year << "-" << month << "-" << day << std::endl;
@@ -135,7 +214,7 @@ int checkStructure(const std::string &input)
 		return (1);
 	}
 
-	displayFormat(year, month, day, quantity);
+	displayFormat(year, month, day, quantity, data);
 
 	return 0;
 }
