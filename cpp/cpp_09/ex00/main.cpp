@@ -15,6 +15,11 @@ int main(int argc, char **argv)
 		//data.csv carregando o vetor
 		std::string lineData;
 		std::getline(fileData, lineData);
+		if ("date,exchange_rate" != lineData)
+		{
+			std::cout << "Error: invalid format." << std::endl;
+			return (1);
+		}
 		while (std::getline(fileData, lineData))
 		{
 			data.push_back(lineData);
@@ -23,6 +28,11 @@ int main(int argc, char **argv)
 		// input
 		std::string line;
 		std::getline(fileInput, line);
+		if ("date | value" != line)
+		{
+			std::cout << "Error: invalid format." << std::endl;
+			return (1);
+		}
 		while (std::getline(fileInput, line))
 		{
 			if (verifyFormat(line))
