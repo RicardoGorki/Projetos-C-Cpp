@@ -14,18 +14,11 @@ public:
 	MutantStack(MutantStack<T> &other);
 	MutantStack<T> &operator=(MutantStack<T> &other);
 
-	//template <class T>
 	typedef typename std::stack<T>::container_type::iterator iterator;
 	iterator begin();
 	iterator end();
-	//template <std::stack<T>::container_type::iterator iterator>
 
-	/* MutantStack<T>::iterator MutantStack<T>::begin()
-	{
-    	return std::stack<T>::c.begin();
-	} */
 };
-
 	template <class T>
 	typename MutantStack<T>::iterator MutantStack<T>::begin()
 	{
@@ -45,15 +38,12 @@ public:
 	MutantStack<T>::~MutantStack(){};
 
 	template <class T>
-	MutantStack<T>::MutantStack(MutantStack<T> &other)
-	{
-		(void)other;
-	};
+	MutantStack<T>::MutantStack(MutantStack<T> &other) : std::stack<T>(other) {};
 
 	template <class T>
 	MutantStack<T> &MutantStack<T>::operator=(MutantStack<T> &other)
 	{
-		(void)other;
+		*this = other;
 		return (*this);
 	};
 
