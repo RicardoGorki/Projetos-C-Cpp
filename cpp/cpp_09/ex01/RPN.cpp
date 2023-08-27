@@ -2,11 +2,34 @@
 
 int verifyContent(std::string content)
 {
+	int countSignal = 0;
+	int countNumber = 0;
 	for (size_t i = 0; i < content.length(); i++)
 	{
+		while (content[i] && content[i] == ' ')
+			i++;
+		if (isdigit(content[i]) && isdigit(content[i + 1]))
+			return (1);
+		if ((content[i] == '+' || content[i] == '-'
+			|| content[i] == '*' || content[i] == '/')
+			&& (content[i + 1] == '+' || content[i + 1] == '-'
+			|| content[i + 1] == '*' || content[i + 1] == '/'))
+			return (1);
 		if ((!isdigit(content[i]) && (content[i] != '+' && content[i] != '-' && content[i] != '*' && content[i] != '/' && content[i] != ' ')))
 			return (1);
+		if (isdigit(content[i]))
+			countNumber++;
+		if ((content[i] == '+' || content[i] == '-'
+			|| content[i] == '*' || content[i] == '/'))
+			countSignal++;
 	}
+	std::cout << "sig " << countSignal << " n " << countNumber << std::endl;
+	if (countSignal >= countNumber)
+		return (1);
+	else if (countNumber < 2 || countSignal < 1)
+		return (1);
+	else if (countNumber - 1 == countSignal)
+		return (0);
 	return (0);
 }
 

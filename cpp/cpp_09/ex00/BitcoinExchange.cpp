@@ -74,23 +74,6 @@ int checkQuantity(float quantity)
 	return (0);
 }
 
-/* size_t localizeLowerDate(const std::vector<std::string> data, size_t save_last, int inputDay)
-{
-	for (size_t i = save_last; i < data.size(); i++)
-	{
-		std::istringstream stream(data[i]);
-		int dataYear, dataMonth, dataDay;
-		char dashFirst, dashSecond;
-
-		stream >> dataYear >> dashFirst >> dataMonth >> dashSecond >> dataDay;
-		if (dataDay < inputDay)
-			save_last = i;
-		if (dataDay > inputDay)
-			break;
-	}
-	return (save_last);
-} */
-
 size_t localizeLowerDate(const std::vector<std::string> data, size_t save_last, int inputMonth, int inputDay)
 {
 	for (size_t i = save_last; i < data.size(); i++)
