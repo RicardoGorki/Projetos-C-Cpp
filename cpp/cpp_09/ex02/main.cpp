@@ -23,16 +23,13 @@ int main(int argc, char **argv)
 		std::cout << "____.::Deque::.____" << std::endl;
 		std::cout << "Before:\t";
 		printDeque(myDeque);
-		// sort deque;
 		goMergeDeque(myDeque);
 		std::cout << std::endl;
 
 		std::cout << "____.::List::.____" << std::endl;
 		std::cout << "Before:\t";
 		printList(myList);
-		// sort list;
 		goMergeList(myList);
-
 		std::cout << std::endl;
 	}
 	else
