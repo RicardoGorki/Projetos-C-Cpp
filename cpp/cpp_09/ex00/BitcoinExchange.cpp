@@ -2,7 +2,7 @@
 
 void displayError(const std::string &input)
 {
-	std::cout << "Error: bad input => " << input << std::endl;
+	std::cerr << "Error: bad input => " << input << std::endl;
 }
 
 int verifyFormat(const std::string &input)
@@ -63,12 +63,12 @@ int checkQuantity(float quantity)
 {
 	if (quantity < 0.1)
 	{
-		std::cout << "Error: not a positive number." << std::endl;
+		std::cerr << "Error: not a positive number." << std::endl;
 		return (1);
 	}
 	if (quantity > 999.99)
 	{
-		std::cout << "Error: too large a number." << std::endl;
+		std::cerr << "Error: too large a number." << std::endl;
 		return (1);
 	}
 	return (0);
@@ -247,7 +247,7 @@ int checkStructure(const std::string &input, const std::vector<std::string> &dat
 	Date rangeEnd = {2023, 12, 31};
 	if (isDateInRange(dateToCheck, rangeStart, rangeEnd))
 	{
-		std::cout << "Error: bad range date " << year << "-" << month << "-" << day << std::endl;
+		std::cerr << "Error: bad range date " << year << "-" << month << "-" << day << std::endl;
 		return 1;
 	}
 
@@ -256,7 +256,7 @@ int checkStructure(const std::string &input, const std::vector<std::string> &dat
 
 	if (!isNumeric(input))
 	{
-		std::cout << "Error: bad input => " << input << std::endl;
+		std::cerr << "Error: bad input => " << input << std::endl;
 		return (1);
 	}
 

@@ -23,7 +23,6 @@ int verifyContent(std::string content)
 			|| content[i] == '*' || content[i] == '/'))
 			countSignal++;
 	}
-	std::cout << "sig " << countSignal << " n " << countNumber << std::endl;
 	if (countSignal >= countNumber)
 		return (1);
 	else if (countNumber < 2 || countSignal < 1)

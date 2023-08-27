@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 		std::ifstream fileData("data.csv");
 		if (!fileInput.is_open() || !fileData.is_open())
 		{
-			std::cout << "Error: could not open file." << std::endl;
+			std::cerr << "Error: could not open file." << std::endl;
 			return 1;
 		}
 		//data.csv carregando o vetor
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 		std::getline(fileData, lineData);
 		if ("date,exchange_rate" != lineData)
 		{
-			std::cout << "Error: invalid format." << std::endl;
+			std::cerr << "Error: invalid format." << std::endl;
 			return (1);
 		}
 		while (std::getline(fileData, lineData))
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 		std::getline(fileInput, line);
 		if ("date | value" != line)
 		{
-			std::cout << "Error: invalid format." << std::endl;
+			std::cerr << "Error: invalid format." << std::endl;
 			return (1);
 		}
 		while (std::getline(fileInput, line))
@@ -42,6 +42,6 @@ int main(int argc, char **argv)
 		fileInput.close();
 	}
 	else
-		std::cout << "Error: could not open file." << std::endl;
+		std::cerr << "Error: could not open file." << std::endl;
 	return 0;
 }
