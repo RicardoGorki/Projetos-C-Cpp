@@ -151,7 +151,7 @@ void reduceData(int prevYear, int prevMonth, int prevDay,
 			std::cout << "0";
 		std::cout << inputDay;
 		std::cout << " => " << inputQuantity << " = ";
-		std::cout << value << std::endl;
+		std::cout << std::fixed << std::setprecision(2) <<  value << std::endl;
 	}
 	else
 	{
