@@ -1,3 +1,5 @@
+![container](https://www.mundodocker.com.br/wp-content/uploads/2015/06/docker_facebook_share.png)
+
 Docker é um software que oferece sistemas virtualizados, que empacota todo um sistema
 operacional e suas aplicações em um container. Os containers são isolados um dos outros
 e agrupam seus proprios softwares, bibliotecas e arquivos de configurações, tornando
