@@ -16,3 +16,6 @@ Docker Hub é uma ferramenta de colaboração e um mercado para desenvolvedores 
 Um Dockerfile é simplesmente um arquivo baseado em texto sem extensão de arquivo que contém um script de instruções. Docker usa esse script para construir uma imagem de contêiner.
 
 Uma imagem é um contêiner em execução usa um sistema de arquivos isolado. Este sistema de arquivos isolado é fornecido por uma imagem, e a imagem deve conter tudo o que é necessário para executar um aplicativo - todas as dependências, configurações, scripts, binários, etc.
+
+Docker Compose é uma ferramenta para definir e executar aplicativos Docker com vários contêineres. Com o Compose, você usa um arquivo YAML para configurar os serviços do seu aplicativo. Então, com um único comando, você cria e inicia todos os serviços da sua configuração.
+
