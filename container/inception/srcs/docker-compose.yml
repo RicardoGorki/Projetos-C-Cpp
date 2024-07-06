@@ -1,21 +1,66 @@
 version: '3.9'
+
 services:
-  mariadb:
-    build:
-      context: "./requirements/mariadb"
-      dockerfile: Dockerfile
-      args:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-    container_name: mariadb
+  nginx:
+    depends_on:
+      - wordpress
     env_file:
       - .env
-    volumes:
-      - db_data:/home/rgorki/Projetos-C-Cpp/container/inception/srcs/requirements/mariadb/tools
-    expose:
-      - 3306
+    container_name: nginx
+    build: requirements/nginx
     init: true
-volumes:
-  db_data:
+    volumes:
+      - wordpress-volume:/var/www/html
+    restart: always
+    networks:
+      - network
+    ports:
+      - 443:443
+  mariadb:
+    env_file:
+      - .env
+    container_name: mariadb
+    build: requirements/mariadb
+    init: true
+    volumes:
+      - mariadb-volume:/var/lib/mysql/
+    restart: always
+    networks:
+      - network
+    ports:
+      - 3306:3306
+  wordpress:
+    depends_on:
+      - mariadb
+    env_file:
+      - .env
+    container_name: wordpress
+    build: requirements/wordpress
+    init: true
+    restart: always
+    volumes:
+      - wordpress-volume:/var/www/html
+    networks:
+      - network
+    ports:
+      - 9000:9000
 
+networks:
+  network:
+    name: network
+
+volumes:
+  mariadb-volume:
+    name: mariadb-volume
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ~/data/mariadb
+  wordpress-volume:
+    name: wordpress-volume
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ~/data/wordpress

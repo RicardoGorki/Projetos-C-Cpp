@@ -1,17 +1,26 @@
-all:
-	clear && cd ./srcs &&  docker compose up -d
+all: up
 
-build:
-	clear && cd ./srcs/requirements/mariadb &&  docker build -t alpine:3.17-stable .
+up:
+	mkdir -p ~/data/mariadb
+	mkdir -p ~/data/wordpress
+	docker compose -f ./srcs/docker-compose.yml build
+	docker compose -f ./srcs/docker-compose.yml up -d
 
-s:
+down:
+	docker compose -f ./srcs/docker-compose.yml down
+
+stop:
+	docker compose -f ./srcs/docker-compose.yml stop
+
+start:
+	docker compose -f ./srcs/docker-compose.yml start
+
+show:
 	clear && docker ps -a
 
-i:
-	clear &&  docker images
+re: down up
 
-maria:
-	clear &&  docker exec -it 8ae53b86fc38 mariadb -u root -p root
+fclean:
+	clear && cd ./srcs && docker compose down && docker system prune --all --force --volumes
 
-clean:
-	clear && cd ./srcs &&  docker compose down && docker image prune -a -f
+.PHONY: all up down re start stop show fclean
